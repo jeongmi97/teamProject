@@ -17,7 +17,7 @@
 	}
 </script>
 <body>
-
+<p>123123</p>
 <h1><a href="${cpath }/">HOME</a></h1>
 <hr>
 <c:if test="${not empty login }">	<%-- login 세션 있을 경우(로그인 되어있는 경우) 로그인 중인 유저 이름 나오게 하기 --%>
