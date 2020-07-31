@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<!--
+		context가 실행될때 뭔가를 실행할 수 있는 방법.
+		이 리스너를 구현해서 스프링 프레임웍을 로딩하는 데 사용하는 설정파일들을 <context-param>을 통해 제공한다.
+		<context-param>에 설정되어 있는 root-context.xml은 모든 서블릿과 필터에서 사용되는 루트 스프링 컨테이너에 대한 설정이다.
+	-->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 
+		encodingFilter
+		Spring Project는 설치 시 UTF-8 지원이 안되있는 상태이기 때문에 EncodingFilter에 UTF-8을 추가함으로써,
+		UTF-8을 통한 한글 load를 가능하게 해준다
+	-->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Processes application requests -->
+	<!-- 
+		Dispatcher Servlet이 모든 요청을 받고, 요청의 URL과 매핑하는 Controller에 위임된다. 
+		servlet이란 보통 자바에서 동적 웹 프로젝트를 개발할 때, 사용자의 요청과 응답을 처리해주는 역할을 한다
+	-->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dispatchOptionsRequest</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+</web-app>

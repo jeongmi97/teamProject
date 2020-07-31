@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+		"-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="com.itbank.dao.CustomerDAO">
+	
+	<select id="login" parameterType="com.itbank.vo.CustomerVO" resultType="com.itbank.vo.CustomerVO">
+		select * from customer2 where email=#{email} and password=#{password}
+	</select>
+	
+	<select id="emailcheck" parameterType="string" resultType="string">
+		select email from customer2 where email=#{email}
+	</select>
+	
+<!--INSERT INTO "SCOTT"."CUSTOMER2" (EMAIL, PASSWORD, NAME, PHONE, ADDRESS, AGE) VALUES ('iu930516@naver.com', 'iu@930516', '이지은', '010-2222-2222', '서울특별시', '28') -->
+	<insert id="insertCustomer" parameterType="com.itbank.vo.CustomerVO">
+		insert into customer2 (email, password, name, phone, address, detailaddress, registdate) values(#{email}, #{password}, #{name}, #{phone}, #{address}, #{detailaddress}, to_date(#{registdate},'yyyymmdd'))
+	</insert>
+	
+	<select id="searchEmail" parameterType="com.itbank.vo.CustomerVO" resultType="com.itbank.vo.CustomerVO">
+		select * from customer2 where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select id="searchPw" parameterType="com.itbank.vo.CustomerVO" resultType="String">
+		select email from customer2 where email=#{email} and name=#{name} and phone=#{phone}
+	</select>
+	
+	<update id="updatePw" parameterType="hashmap">
+		update customer2 set password=#{password} where email=#{email}
+	</update>
+	
+	<select id="checkPassword" parameterType="com.itbank.vo.CustomerVO" resultType="com.itbank.vo.CustomerVO">
+		select email from customer2 where email=#{email} and password=#{password}
+	</select>
+	
+</mapper>
