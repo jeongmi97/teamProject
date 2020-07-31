@@ -20,4 +20,6 @@ public interface CustomerDAO {
 
 	CustomerVO checkPassword(CustomerVO vo);
 
+	void updateC(CustomerVO vo);
+
 }

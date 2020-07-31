@@ -54,7 +54,6 @@ public class CustomerVO {
 	public void setRegistdate(String registdate) {
 		this.registdate = registdate;
 	}
-	
 	public String getDetailaddress() {
 		return detailaddress;
 	}
@@ -68,5 +67,4 @@ public class CustomerVO {
 		return Arrays.asList(arr).toString();
 		
 	}
-		
 }

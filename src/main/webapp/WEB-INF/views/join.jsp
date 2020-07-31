@@ -55,8 +55,8 @@ article{ display: none; }
 </form>
 </article>
 
+</body>
 <!-- 주소 api & input 클릭 이벤트  -->
 <script type="text/javascript" src="${cpath }/js/joinPostcode.js"></script>		 
 <script type="text/javascript" src="${cpath }/js/joinEvent.js"></script>
-</body>
 </html>

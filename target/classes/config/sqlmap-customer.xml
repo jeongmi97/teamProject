@@ -34,4 +34,9 @@
 		select email from customer2 where email=#{email} and password=#{password}
 	</select>
 	
+<!-- 	2020.07.31 -->
+	<update id="updateC" parameterType="com.itbank.vo.CustomerVO">
+		update customer2 set name=#{name}, password=#{password}, phone=#{phone}, address=#{address}, detailaddress=#{detailaddress}
+	</update>
+	
 </mapper>

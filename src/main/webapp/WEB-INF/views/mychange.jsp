@@ -68,7 +68,7 @@
 								<div class="form-group row">
 									<div class="col-md-12">
 										<label for="Password" class="text-black">새 비밀번호<span class="text-danger"></span></label>
-										<input type="password" class="form-control" id="Password" name="Password" placeholder="비밀번호를 입력하세요" required>
+										<input type="password" class="form-control" id="Password" name="Password" placeholder="비밀번호를 입력하세요">
 										<p id="pwmsg"></p>
 									</div>
 								</div>
@@ -76,7 +76,7 @@
 								<div class="form-group row">
 									<div class="col-md-12">
 										<label for="c_subject" class="text-black">새 비밀번호 확인<span class="text-danger"></span></label>
-										<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요" required>
+										<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요">
 										<p id="cpwmsg"></p>
 									</div>
 								</div>

@@ -68,7 +68,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping("mychange/")
-	public ModelAndView mychange(HttpServletRequest request,CustomerVO vo) {
-		return cs.mychange(request, vo);
+	public ModelAndView mychange(HttpServletRequest request, HttpServletResponse response, CustomerVO vo) throws NoSuchAlgorithmException, IOException {
+		return cs.mychange(request, response, vo);
 	}
 }

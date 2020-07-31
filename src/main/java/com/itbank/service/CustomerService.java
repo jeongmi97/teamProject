@@ -192,7 +192,8 @@ public class CustomerService {
 		}
 	}
 
-//	2020.07.31 회원정보 수정
+//	2020.07.31 
+//	회원정보 수정
 	public ModelAndView mychange(HttpSession session) {
 		ModelAndView mav = new ModelAndView("mychange");
 		CustomerVO vo = (CustomerVO) session.getAttribute("login");
@@ -206,14 +207,23 @@ public class CustomerService {
 		return mav;
 	}
 
-	public ModelAndView mychange(HttpServletRequest request, CustomerVO vo) {
-		ModelAndView mav = new ModelAndView();
-		vo.setPassword(request.getParameter("oldPassword"));
-		vo.setEmail(request.getParameter("email"));
-		if(vo.getPassword() == null || dao.checkPassword(vo) != null) {
-			
+	public ModelAndView mychange(HttpServletRequest request, HttpServletResponse response, CustomerVO vo) throws NoSuchAlgorithmException, IOException {
+		ModelAndView mav = new ModelAndView("mychange");
+		String email = request.getParameter("email");
+		String oldpassword = request.getParameter("oldPassword");
+		vo.setPassword(SecurePassword.getHashValue(email, oldpassword)); vo.setEmail(email);
+		if(oldpassword == null || dao.checkPassword(vo) == null) {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호를 확인해주세요'); history.go(-1);</script>");		// 입력값이 일치하지 않으면 알림창 출력 후 뒤로가기
+			out.flush();
+		}else {
+			vo.setPassword(SecurePassword.getHashValue(email, request.getParameter("Password")));
+			String phone = request.getParameter("firstP") + request.getParameter("midP") + request.getParameter("lastP");
+			String address = "(" + request.getParameter("postcode") + ")" + request.getParameter("address");
+			vo.setPhone(phone); vo.setAddress(address);
+			dao.updateC(vo);
 		}
-		return null;
+		return mav;
 	}
 }
 
