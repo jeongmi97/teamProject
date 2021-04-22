@@ -203,7 +203,7 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.2.8</version>
+			<version>3.5.6</version>
 		</dependency>
 	<!-- DB table과 Java간의 매핑을 가능하게 해준다 -->
 		<dependency>
